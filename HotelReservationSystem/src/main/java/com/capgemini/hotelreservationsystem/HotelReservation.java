@@ -10,15 +10,15 @@ import java.util.stream.Collectors;
 
 public class HotelReservation {
 
-	private static ArrayList<Hotel> hotelList = new ArrayList<>();
+	private static ArrayList<HotelDetails> hotelList = new ArrayList<>();
 
-	public ArrayList<Hotel> getHotelList() {
+	public ArrayList<HotelDetails> getHotelList() {
 		return hotelList;
 	}
 
 	// UC1
-	public static void addHotel(String name, int price) {
-		Hotel temporary = new Hotel(name, price);
+	public static void addHotel(String name, int weekdayRoomRate, int weekendRoomRate) {
+		HotelDetails temporary = new HotelDetails(name, weekdayRoomRate, weekendRoomRate);
 		hotelList.add(temporary);
 	}
 
@@ -32,7 +32,7 @@ public class HotelReservation {
 		LocalDate startDateInput = LocalDate.parse(startDate, dateFormat);
 		LocalDate endDateInput = LocalDate.parse(endDate, dateFormat);
 		int noOfDaysToBook = (int) ChronoUnit.DAYS.between(startDateInput, endDateInput) + 1;
-		Map<String, Integer> hotelNameToTotalCostMap = hotelList.stream().collect(Collectors.toMap(hotel -> hotel.getName(), hotel -> hotel.getPrice() * noOfDaysToBook));
+		Map<String, Integer> hotelNameToTotalCostMap = hotelList.stream().collect(Collectors.toMap(hotel -> hotel.getName(), hotel -> hotel.getWeekdayRoomRate() * noOfDaysToBook));
 		String cheapestHotelName = hotelNameToTotalCostMap.keySet().stream().min((hotel1, hotel2) -> hotelNameToTotalCostMap.get(hotel1) - hotelNameToTotalCostMap.get(hotel2)).orElse(null);
 		String cheapestHotelInfo = cheapestHotelName + ", Total Cost: $" + hotelNameToTotalCostMap.get(cheapestHotelName);
 		return cheapestHotelInfo;
