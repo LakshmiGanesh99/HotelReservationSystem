@@ -15,4 +15,15 @@ public class HotelReservationTest {
 		HotelReservation.addHotel("Ridgewood",220);
 		Assert.assertEquals(3, HotelReservation.countNoOfHotels());
 	}
+	
+	@Test
+	public void givenDetailsOf3Hotels_InAGivenDataRage_shouldReturnCheapesthotel() {
+		
+		HotelReservation.addHotel("Lakewood",110);
+		HotelReservation.addHotel("Bridgewood",160);
+		HotelReservation.addHotel("Ridgewood",220);
+		String cheapestHotelInfo = HotelReservation.findCheapestHotel("10 Sep 2020","11 Sep 2020");
+		Assert.assertEquals("Lakewood Total Cost: $220",cheapestHotelInfo);
+	}
+	
 }
