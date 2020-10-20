@@ -18,8 +18,8 @@ public class HotelReservation {
 		return hotelList;
 	}
 
-	public static void addHotel(String name, int weekdayRoomRate, int weekendRoomRate) {
-		HotelDetails temporary = new HotelDetails(name, weekdayRoomRate, weekendRoomRate);
+	public static void addHotel(String name, int weekdayRoomRate, int weekendRoomRate, int rating) {
+		HotelDetails temporary = new HotelDetails(name, weekdayRoomRate, weekendRoomRate, rating);
 		hotelList.add(temporary);
 	}
 

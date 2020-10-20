@@ -11,18 +11,18 @@ public class HotelReservationTest {
 	@Test
 	public void givendetailsOf3Hotels_WhenAddedToHotelList_SizeOfListIs3() {
 
-		HotelReservation.addHotel("Lakewood", 110, 90);
-		HotelReservation.addHotel("Bridgewood", 160, 60);
-		HotelReservation.addHotel("Ridgewood", 220, 150);
+		HotelReservation.addHotel("Lakewood", 110, 90,3);
+		HotelReservation.addHotel("Bridgewood", 160, 60,4);
+		HotelReservation.addHotel("Ridgewood", 220, 150,5);
 		Assert.assertEquals(3, HotelReservation.countNoOfHotels());
 	}
 
 	@Test
 	public void givenDetailsOf3Hotels_InAGivenDataRage_shouldReturnCheapesthotel() {
 
-		HotelReservation.addHotel("Lakewood", 110, 90);
-		HotelReservation.addHotel("Bridgewood", 160, 60);
-		HotelReservation.addHotel("Ridgewood", 220, 150);
+		HotelReservation.addHotel("Lakewood", 110, 90,3);
+		HotelReservation.addHotel("Bridgewood", 160, 60,4);
+		HotelReservation.addHotel("Ridgewood", 220, 150,5);
 		String cheapestHotelInfo = HotelReservation.findCheapestHotel("10 Sep 2020", "11 Sep 2020");
 		Assert.assertEquals("Lakewood Total Cost: $220", cheapestHotelInfo);
 	}
@@ -30,9 +30,9 @@ public class HotelReservationTest {
 	@Test
 	public void givenDetailsOf3Hotels_WhenWeekdayAndWeekendRatesAdded_ShouldReturnThoseRates() {
 
-		HotelReservation.addHotel("Lakewood", 110, 90);
-		HotelReservation.addHotel("Bridgewood", 160, 60);
-		HotelReservation.addHotel("Ridgewood", 220, 150);
+		HotelReservation.addHotel("Lakewood", 110, 90,3);
+		HotelReservation.addHotel("Bridgewood", 160, 60,4);
+		HotelReservation.addHotel("Ridgewood", 220, 150,5);
 		List<Integer> weekendRoomRates = new ArrayList<>();
 		List<Integer> weekdayRoomRates = new ArrayList<>();
 		HotelReservation.hotelList.stream().forEach(hotelDetails -> {
@@ -51,10 +51,25 @@ public class HotelReservationTest {
 
 	@Test
 	public void given3Hotels_InAGivenDateRange_ShouldReturnCheapestHotelBasedOnWeekdayAndWeekend() {
-		HotelReservation.addHotel("Lakewood", 110, 90);
-		HotelReservation.addHotel("Bridgewood", 150, 50);
-		HotelReservation.addHotel("Ridgewood", 220, 150);
+		HotelReservation.addHotel("Lakewood", 110, 90,3);
+		HotelReservation.addHotel("Bridgewood", 160, 60,4);
+		HotelReservation.addHotel("Ridgewood", 220, 150,5);
 		String cheapestHotelInfo = HotelReservation.findCheapestHotel("11 Sep 2020", "12 Sep 2020");
 		Assert.assertEquals("Lakewood, Bridgewood Total Cost: $200", cheapestHotelInfo);
+	}
+	
+	@Test
+	public void given3Hotels_WhenRatingsAdded_ShouldReturnRates() {
+		
+		HotelReservation.addHotel("Lakewood", 110, 90,3);
+		HotelReservation.addHotel("Bridgewood", 160, 60,4);
+		HotelReservation.addHotel("Ridgewood", 220, 150,5);
+		List<Integer> ratingList = new ArrayList<>();
+		HotelReservation.hotelList.stream().forEach(hotelDetails -> {
+			ratingList.add(hotelDetails.getRating());
+		});
+		Assert.assertEquals(3, (int) ratingList.get(0));
+		Assert.assertEquals(4, (int) ratingList.get(1));
+		Assert.assertEquals(5, (int) ratingList.get(2));
 	}
 }
