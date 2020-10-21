@@ -2,38 +2,57 @@ package com.capgemini.hotelreservationsystem;
 
 public class HotelDetails {
 
-	private String name;
-	private int weekdayRoomRate;
-	private int weekendRoomRate;
+	private String hotelName;
+	private int weekdayRoomRateRegular;
+	private int weekendRoomRateRegular;
+	private int weekdayRoomRateRewards;
+	private int weekendRoomRateRewards;
 	private int rating;
 	
-	public HotelDetails(String name, int weekdayRoomRate, int weekendRoomRate, int rating) {
-		this.name = name;
-		this.weekdayRoomRate = weekdayRoomRate;
-		this.weekendRoomRate = weekendRoomRate;
+	public HotelDetails(String name, int weekdayRoomRateRegular, int weekendRoomRateRegular, int weekdayRoomRateRewards, int weekendRoomRateRewards, int rating) {
+		this.hotelName = name;
+		this.weekdayRoomRateRegular = weekdayRoomRateRegular;
+		this.weekendRoomRateRegular = weekendRoomRateRegular;
+		this.weekdayRoomRateRewards = weekdayRoomRateRewards;
+		this.weekendRoomRateRewards = weekendRoomRateRewards;
 		this.rating = rating;
 	}
 	
 	public String getName() {
-		return name;
+		return hotelName;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.hotelName = name;
 	}
-	public int getWeekdayRoomRate() {
-		return weekdayRoomRate;
-	}
-
-	public void setWeekdayRoomRate(int weekdayRoomRate) {
-		this.weekdayRoomRate = weekdayRoomRate;
+	public int getWeekdayRoomRateRegular() {
+		return weekdayRoomRateRegular;
 	}
 
-	public int getWeekendRoomRate() {
-		return weekendRoomRate;
+	public void setWeekdayRoomRateRegular(int weekdayRoomRateRegular) {
+		this.weekdayRoomRateRegular = weekdayRoomRateRegular;
 	}
 
-	public void setWeekendRoomRate(int weekendRoomRate) {
-		this.weekendRoomRate = weekendRoomRate;
+	public int getWeekendRoomRateRegular() {
+		return weekendRoomRateRegular;
+	}
+
+	public void setWeekendRoomRateRegular(int weekendRoomRateReuglar) {
+		this.weekendRoomRateRegular = weekendRoomRateReuglar;
+	}
+	public int getWeekdayRoomRateRewards() {
+		return weekdayRoomRateRewards;
+	}
+
+	public void setWeekdayRoomRateRewards(int weekdayRoomRateRewards) {
+		this.weekdayRoomRateRewards = weekdayRoomRateRewards;
+	}
+
+	public int getWeekendRoomRateRewards() {
+		return weekendRoomRateRewards;
+	}
+
+	public void setWeekendRoomRateRewards(int weekendRoomRateRewards) {
+		this.weekendRoomRateRewards = weekendRoomRateRewards;
 	}
 	
 	public int getRating() {
@@ -46,7 +65,7 @@ public class HotelDetails {
 	
 	@Override
 	public String toString(){
-		return "HotelDetails [hotelName=" + name + ", weekdayRoomRate=" + weekdayRoomRate + ", weekendRoomRate="
-				+ weekendRoomRate + ", rating=" + rating + "]";
+		return "HotelDetails [hotelName=" + hotelName + ", weekdayRoomRate=" + weekdayRoomRateRegular + ", weekendRoomRate="
+				+ weekendRoomRateRegular + ", rating=" + rating + "]";
 	}
 }
