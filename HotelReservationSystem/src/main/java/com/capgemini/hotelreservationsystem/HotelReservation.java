@@ -155,4 +155,16 @@ public class HotelReservation {
 			return getCheapestBestRatedHotelForRewards(startDate, endDate);
 	}
 	
+	public String cheapestBestRatedHotelSelector(String date) {
+		String[] dateArray = date.split(",");
+		if(typeOfCustomer == CustomerType.REGULAR)
+			return getCheapestBestRatedHotel(dateArray[0], dateArray[1]);
+		else
+			return getCheapestBestRatedHotelForRewards(dateArray[0], dateArray[1]);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("Welcome to Hotel Reservation Program");
+	}
+	
 	}

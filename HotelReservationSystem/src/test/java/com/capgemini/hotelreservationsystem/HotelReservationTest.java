@@ -2,7 +2,6 @@ package com.capgemini.hotelreservationsystem;
 
 import java.awt.List;
 import java.util.ArrayList;
-
 import org.junit.Assert;
 import org.junit.Test;
 
