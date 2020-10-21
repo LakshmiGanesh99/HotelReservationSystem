@@ -148,13 +148,6 @@ public class HotelReservation {
 		else throw new CustomerTypeException("Please enter only REGULAR or REWARDS!");
 	}
 	
-	public String cheapestBestRatedHotelSelector(String startDate, String endDate) {
-		if(typeOfCustomer == CustomerType.REGULAR)
-			return getCheapestBestRatedHotel(startDate, endDate);
-		else
-			return getCheapestBestRatedHotelForRewards(startDate, endDate);
-	}
-	
 	public String cheapestBestRatedHotelSelector(String date) {
 		String[] dateArray = date.split(",");
 		if(typeOfCustomer == CustomerType.REGULAR)
@@ -162,7 +155,7 @@ public class HotelReservation {
 		else
 			return getCheapestBestRatedHotelForRewards(dateArray[0], dateArray[1]);
 	}
-	
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to Hotel Reservation Program");
 	}
