@@ -10,26 +10,27 @@ public class HotelReservationTest {
 
 	@Test
 	public void givendetailsOf3Hotels_WhenAddedToHotelList_SizeOfListIs3() {
-
-		HotelReservation.addHotel("Lakewood", 110, 90,3);
-		HotelReservation.addHotel("Bridgewood", 160, 60,4);
-		HotelReservation.addHotel("Ridgewood", 220, 150,5);
-		Assert.assertEquals(3, HotelReservation.countNoOfHotels());
+		HotelReservation hotelReservation = new HotelReservation();
+		hotelReservation.addHotel("Lakewood", 110, 90, 3);
+		hotelReservation.addHotel("Bridgewood", 160, 60, 4);
+		hotelReservation.addHotel("Ridgewood", 220, 150, 5);
+		int noOfHotelsAdded = hotelReservation.countNoOfHotels();
+		Assert.assertEquals(3, noOfHotelsAdded);
 	}
 
 	@Test
 	public void givenDetailsOf3Hotels_InAGivenDataRage_shouldReturnCheapesthotel() {
-
-		HotelReservation.addHotel("Lakewood", 110, 90,3);
-		HotelReservation.addHotel("Bridgewood", 160, 60,4);
-		HotelReservation.addHotel("Ridgewood", 220, 150,5);
-		String cheapestHotelInfo = HotelReservation.findCheapestHotel("10 Sep 2020", "11 Sep 2020");
+		HotelReservation hotelReservation = new HotelReservation();
+		hotelReservation.addHotel("Lakewood", 110, 90,3);
+		hotelReservation.addHotel("Bridgewood", 160, 60,4);
+		hotelReservation.addHotel("Ridgewood", 220, 150,5);
+		String cheapestHotelInfo = hotelReservation.findCheapestHotel("10 Sep 2020", "11 Sep 2020");
 		Assert.assertEquals("Lakewood Total Cost: $220", cheapestHotelInfo);
 	}
 
 	@Test
 	public void givenDetailsOf3Hotels_WhenWeekdayAndWeekendRatesAdded_ShouldReturnThoseRates() {
-
+		HotelReservation hotelReservation = new HotelReservation();
 		HotelReservation.addHotel("Lakewood", 110, 90,3);
 		HotelReservation.addHotel("Bridgewood", 160, 60,4);
 		HotelReservation.addHotel("Ridgewood", 220, 150,5);
@@ -51,21 +52,22 @@ public class HotelReservationTest {
 
 	@Test
 	public void given3Hotels_InAGivenDateRange_ShouldReturnCheapestHotelBasedOnWeekdayAndWeekend() {
-		HotelReservation.addHotel("Lakewood", 110, 90,3);
-		HotelReservation.addHotel("Bridgewood", 160, 60,4);
-		HotelReservation.addHotel("Ridgewood", 220, 150,5);
-		String cheapestHotelInfo = HotelReservation.findCheapestHotel("11 Sep 2020", "12 Sep 2020");
+		HotelReservation hotelReservation = new HotelReservation();
+		hotelReservation.addHotel("Lakewood", 110, 90,3);
+		hotelReservation.addHotel("Bridgewood", 160, 60,4);
+		hotelReservation.addHotel("Ridgewood", 220, 150,5);
+		String cheapestHotelInfo = hotelReservation.findCheapestHotel("11 Sep 2020", "12 Sep 2020");
 		Assert.assertEquals("Lakewood, Bridgewood Total Cost: $200", cheapestHotelInfo);
 	}
 	
 	@Test
 	public void given3Hotels_WhenRatingsAdded_ShouldReturnRates() {
-		
-		HotelReservation.addHotel("Lakewood", 110, 90,3);
-		HotelReservation.addHotel("Bridgewood", 160, 60,4);
-		HotelReservation.addHotel("Ridgewood", 220, 150,5);
+		HotelReservation hotelReservation = new HotelReservation();
+		hotelReservation.addHotel("Lakewood", 110, 90,3);
+		hotelReservation.addHotel("Bridgewood", 160, 60,4);
+		hotelReservation.addHotel("Ridgewood", 220, 150,5);
 		List<Integer> ratingList = new ArrayList<>();
-		HotelReservation.hotelList.stream().forEach(hotelDetails -> {
+		hotelReservation.hotelList.stream().forEach(hotelDetails -> {
 			ratingList.add(hotelDetails.getRating());
 		});
 		Assert.assertEquals(3, (int) ratingList.get(0));
@@ -81,5 +83,15 @@ public class HotelReservationTest {
 		hotelReservation.addHotel("Ridgewood", 220, 150, 5);
 		String cheapestBestRatedHotelInfo = hotelReservation.getCheapestBestRatedHotel("11 Sep 2020", "12 Sep 2020");
 		Assert.assertEquals("Bridgewood, Rating: 4, Total Cost: $200", cheapestBestRatedHotelInfo);
-	}		
+	}	
+	
+	@Test
+	public void given3Hotels_InAGivenDateRange_ShouldReturnBestRatedHotel() {
+		HotelReservation hotelReservation = new HotelReservation();
+		hotelReservation.addHotel("Lakewood", 110, 90, 3);
+		hotelReservation.addHotel("Bridgewood", 150, 50, 4);
+		hotelReservation.addHotel("Ridgewood", 220, 150, 5);
+		String bestRatedHotelInfo = hotelReservation.getBestRatedHotel("11 Sep 2020", "12 Sep 2020");
+		Assert.assertEquals("Ridgewood, Total Cost: $370", bestRatedHotelInfo);
+	}	
 }

@@ -83,4 +83,20 @@ public class HotelReservation {
 		String cheapestBestRatedHotelInfo = cheapestBestRatedHotel.getName() + ", Rating: " + cheapestBestRatedHotel.getRating() + ", Total Cost: $" + minCost;
 		return cheapestBestRatedHotelInfo;
 	}
+	
+	public String getBestRatedHotel(String startDate, String endDate) {
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd MMM yyyy");
+		LocalDate startDateInput = LocalDate.parse(startDate, dateFormat);
+		LocalDate endDateInput = LocalDate.parse(endDate, dateFormat);
+		int noOfDaysToBook = (int) ChronoUnit.DAYS.between(startDateInput, endDateInput) + 1;
+		List<DayOfWeek> daysList = new ArrayList<>();
+		daysList = Stream.iterate(startDateInput.getDayOfWeek(), day -> day.plus(1)).limit(noOfDaysToBook).collect(Collectors.toList());
+		int noOfWeekends = (int) daysList.stream().filter(day -> 
+		day.equals(DayOfWeek.SATURDAY) || day.equals(DayOfWeek.SUNDAY)).count();
+		int noOfWeekdays = daysList.size() - noOfWeekends;
+		HotelDetails bestRatedHotel = hotelList.stream().max((hotelOne, hotelTwo) -> hotelOne.getRating() - hotelTwo.getRating()).orElse(null);
+		int bestRatedCost = bestRatedHotel.getWeekdayRoomRate() * noOfWeekdays + bestRatedHotel.getWeekendRoomRate() * noOfWeekends;
+		String bestRatedHotelInfo = bestRatedHotel.getName() + ", Total Cost: $" + bestRatedCost;
+		return bestRatedHotelInfo;
+	}
 	}
